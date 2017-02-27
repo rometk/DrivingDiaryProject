@@ -1,7 +1,8 @@
-#pragma once
+﻿#pragma once
 #include <curl.h>
 #include <string>
 #include <sstream>
+#include <algorithm>
 #include "ParseHTML.h"
 #include "Trip.h"
 #include "Odometer.h"
@@ -11,7 +12,7 @@ using namespace std;
 class Controller
 {
 public:
-	Controller(Trip setTrip, Odometer setOdometer);
+	Controller(Trip setTrip, Odometer setOdometer, ParseHTML setParseHtml);
 	Controller();
 	~Controller();
 
@@ -23,16 +24,15 @@ public:
 
 	void tripLookup(string getDestination, string getOrigin);
 	void enterTrip(string getDestination, string getOrigin);
-
-	/*Meters into kilometers*/
-	double distanceKm(int getDistance);
-
-	/*Duration in seconds into h:min:s form*/
-	string durationHumanReadable(int getDuration);
+	void display();
+	void displayTotal();
+	void clear();
 
 private:
+	bool tripFound;
 	double distance;
-	string origin, destination, duration;
+	int duration;
+	string origin, destination;
 	Trip trip;
 	Odometer odometer;
 	ParseHTML parseHtml;

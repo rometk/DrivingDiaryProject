@@ -17,7 +17,12 @@ int main()
 {
 	Trip trip;
 	Odometer odometer;
-	Controller controller(trip,odometer);
+
+	/*Get your API key at: https://developers.google.com/maps/documentation/distance-matrix/get-api-key*/
+	string APIkey = "AIzaSyAro0eBo0iVtjk_7izOBZ5sYfu6Q-qQ-SA";
+	ParseHTML parseHtml(APIkey);
+
+	Controller controller(trip,odometer,parseHtml);
 	UserInterface ui;
 
 	ui.start();

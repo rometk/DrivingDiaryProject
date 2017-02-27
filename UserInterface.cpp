@@ -13,7 +13,8 @@ UserInterface::~UserInterface()
 
 void UserInterface::help() {
 	cout << "Commands:\nLook up approximate distance and duration between cities: lookup\n"
-		<< "Go to a trip (save trip): trip\n Display all trips: display\nDisplay total distance and duration travelled: total";
+		<< "Go to a trip (save trip): trip\nDisplay all trips: display\nDisplay total distance and duration travelled: total\n"
+		<< "Clear trip cache: clear";
 }
 
 void UserInterface::start() {
@@ -22,23 +23,22 @@ void UserInterface::start() {
 	while (command != "quit") {
 		cout << "\n\nType command: \n";
 		cin >> command;
+		cout << "\n";
 		
 		if (command == "lookup") {
-			cout << "\n";
 			controller.tripLookup(to(), from());
 		}
 		else if (command == "trip") {
-			cout << "\n";
 			controller.enterTrip(to(), from());
 		}
 		else if (command == "display") {
-
+			controller.display();
 		}
 		else if (command == "total") {
-
+			controller.displayTotal();
 		}
 		else if (command == "clear") {
-
+			controller.clear();
 		}
 		else if (command == "help") {
 			help();
