@@ -19,7 +19,7 @@ int main()
 	Odometer odometer;
 
 	/*Get your API key at: https://developers.google.com/maps/documentation/distance-matrix/get-api-key*/
-	string APIkey = "Insert you API key here";
+	string APIkey = "Insert your API key here";
 	ParseHTML parseHtml(APIkey);
 
 	Controller controller(trip,odometer,parseHtml);
