@@ -2,10 +2,6 @@
 #include "Controller.h"
 
 
-Controller::Controller() {
-
-}
-
 Controller::Controller(Trip setTrip, Odometer setOdometer, ParseHTML setParseHtml)
 {
 	trip = setTrip;
@@ -13,6 +9,9 @@ Controller::Controller(Trip setTrip, Odometer setOdometer, ParseHTML setParseHtm
 	parseHtml = setParseHtml;
 }
 
+Controller::Controller() {
+
+}
 
 Controller::~Controller()
 {
@@ -72,7 +71,6 @@ void Controller::curlHandler() {
 	sprintf(APIurl, "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=%s&destinations=%s&key=%s", origin.c_str(), destination.c_str(), parseHtml.getAPIkey().c_str());
 
 	string readBuffer;
-	int* test = new int[200];
 	curl = curl_easy_init();
 	if (curl) {
 		curl_easy_setopt(curl, CURLOPT_URL, APIurl);
@@ -81,15 +79,13 @@ void Controller::curlHandler() {
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
 
 		/*Copy data to readBuffer*/
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &test);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
 
 		/* example.com is redirected, so we tell libcurl to follow redirection */
 		curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 
 		/* Perform the request, res will get the return code */
 		res = curl_easy_perform(curl);
-
-		//stripUnicode(readBuffer);
 		/*Check if these places exist (if field 'NOT_FOUND wasn't found in HTML page')*/
 		if (readBuffer.find("NOT_FOUND")==string::npos && readBuffer.find("ZERO_RESULTS") == string::npos) {
 			

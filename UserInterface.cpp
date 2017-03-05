@@ -2,8 +2,9 @@
 #include "UserInterface.h"
 
 
-UserInterface::UserInterface() : controller()
+UserInterface::UserInterface(Controller getController)
 {
+	controller = getController;
 }
 
 
@@ -12,7 +13,7 @@ UserInterface::~UserInterface()
 }
 
 void UserInterface::help() {
-	cout << "Commands:\nLook up approximate distance and duration between cities: lookup\n"
+	wcout << "Commands:\nLook up approximate distance and duration between cities: lookup\n"
 		<< "Go to a trip (save trip): trip\nDisplay all trips: display\nDisplay total distance and duration travelled: total\n"
 		<< "Clear trip cache: clear";
 }

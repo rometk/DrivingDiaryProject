@@ -91,11 +91,9 @@ string ParseHTML::getAPIkey(){
 /*Strip random letters from URL address with Scandinavic letters falsely encoded (letters that have negative ASCII value)*/
 void ParseHTML::stripUnicode(string & str)
 {
-	int j = 0;
 	for (int i = 0; i < str.length(); i++) {
-		j = (int)str.at(i);
-		if (j < 0) {
-			str.erase(remove(str.begin(), str.end(), str.at(i)), str.end());
+		if ((int)str.at(i) < 0) {
+			str.erase(remove(str.begin(), str.end(), (int)str.at(i)), str.end());
 			i--;
 		}
 	}

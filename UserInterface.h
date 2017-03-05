@@ -7,7 +7,7 @@ using namespace std;
 class UserInterface
 {
 public:
-	UserInterface();
+	UserInterface(Controller controller);
 	~UserInterface();
 
 	void start();
