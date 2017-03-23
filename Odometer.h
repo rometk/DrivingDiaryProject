@@ -11,9 +11,14 @@ public:
 	void resetOdometer();
 	void displayTotalDistance();
 	void displayTotalDuration();
+	void fuelConsumptionData(int getAvgConsumption, bool setFlag);
 
 private:
 	double totalDistance;
 	int totalDuration;
+
+	bool setConsumption;
+	int avgConsumption;
+	double totalConsumption;
 };
 

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <fstream>
 
 #pragma warning(disable:4996)
 
@@ -12,18 +13,21 @@ class Trip
 public:
 	Trip();
 	~Trip();
-	void tripLookup(string destination, string origin, double distance, int duration);
-	void saveTrip(string destination, string origin, double distance, int duration);
+	void tripLookup(wstring destination, wstring origin, double distance, int duration);
+	void saveTrip(wstring destination, wstring origin, double distance, int duration);
 	void displayTrips();
 	void clearTripCache();
 	double distanceKm(double distance);
-	string durationHumanReadable(int duration);
+	wstring durationHumanReadable(int duration);
+
+	const vector<wstring> &getTrips() const;
+	void writeFromDisc(wstring trip);
 
 private:
 	double distance;
 	int duration;
 
 	/*Trip cache (vector array)*/
-	vector<string> trips;
+	vector<wstring> trips;
 };
 

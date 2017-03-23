@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include <iostream>
 #include <string>
-#include "ParseHTML.h"
+#include "ParseJson.h"
 #include "Trip.h"
 #include "Odometer.h"
 #include "Controller.h"
@@ -16,17 +16,16 @@ using namespace std;
 
 int main()
 {
-	//SetConsoleOutputCP(1252);
-	//SetConsoleCP(1252);
-
+	SetConsoleOutputCP(1252);
+	SetConsoleCP(1252);
 	Trip trip;
 	Odometer odometer;
 
 	/*Get your API key at: https://developers.google.com/maps/documentation/distance-matrix/get-api-key*/
-	string APIkey = "Insert your API key here";
-	ParseHTML parseHtml(APIkey);
+	wstring APIkey = L"AIzaSyAro0eBo0iVtjk_7izOBZ5sYfu6Q-qQ-SA";
+	ParseJson parseJson(APIkey);
 
-	Controller controller(trip,odometer,parseHtml);
+	Controller controller(trip,odometer, parseJson);
 	UserInterface ui(controller);
 
 	ui.start();

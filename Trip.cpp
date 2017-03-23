@@ -10,40 +10,40 @@ Trip::~Trip()
 {
 }
 
-void Trip::tripLookup(string destination, string origin, double getDistance, int getDuration) {
+void Trip::tripLookup(wstring destination, wstring origin, double getDistance, int getDuration) {
 	distance = getDistance;
 	duration = getDuration;
 
 	/*Distance into kilometers and duration into human readable form*/
 	double getDistanceKm = distanceKm (distance);
-	string getDurationHumanReadable = durationHumanReadable (duration);
+	wstring getDurationHumanReadable = durationHumanReadable (duration);
 
-	cout << "\nOrigin: " << origin;
-	cout << "\nDestination: " << destination;
-	cout << "\nDistance: " << getDistanceKm << " km";
-	cout << "\nDuration: " << getDurationHumanReadable;
+	wcout << "\nOrigin: " << origin;
+	wcout << "\nDestination: " << destination;
+	wcout << "\nDistance: " << getDistanceKm << " km";
+	wcout << "\nDuration: " << getDurationHumanReadable;
 }
 
-void Trip::saveTrip(string destination, string origin, double getDistance, int getDuration) {
+void Trip::saveTrip(wstring destination, wstring origin, double getDistance, int getDuration) {
 	distance = getDistance;
 	duration = getDuration;
 
 	/*Distance into kilometers and duration into human readable form*/
 	double getDistanceKm = distanceKm(distance);
-	string getDurationHumanReadable = durationHumanReadable(duration);
+	wstring getDurationHumanReadable = durationHumanReadable(duration);
 
-	ostringstream strStream;
-	strStream << origin << " - " << destination << "\nDistance: " << getDistanceKm << " km\nDuration: " << getDurationHumanReadable;
-	string trip = strStream.str();
+	wostringstream strStream;
+	strStream << origin << " - " << destination << "\nDistance: " << getDistanceKm << " km\nDuration: " << getDurationHumanReadable << "\n\n";
+	wstring trip = strStream.str();
 	trips.push_back(trip);
 
 	/*Print information about current trip*/
-	cout << "\n" << trip;
+	wcout << "\n" << trip;
 }
 
 void Trip::displayTrips() {
 	for (int i = 0; i < trips.size(); i++) {
-		cout << trips.at(i) << "\n\n";
+		wcout << trips.at(i) << endl;
 	}
 }
 
@@ -57,7 +57,7 @@ double Trip::distanceKm(double getDistance) {
 }
 
 /*Duration in seconds into h:min:s form*/
-string Trip::durationHumanReadable(int getDuration) {
+wstring Trip::durationHumanReadable(int getDuration) {
 	int hours = 0, minutes = 0, seconds = 0;
 	int thisDuration = getDuration;
 
@@ -80,9 +80,18 @@ string Trip::durationHumanReadable(int getDuration) {
 			i = true;
 	}
 
-	ostringstream strStream;
+	wostringstream strStream;
 	strStream << hours << " h " << minutes << " min " << seconds << " s ";
-	string durationStr = strStream.str();
+	wstring durationStr = strStream.str();
 
 	return durationStr;
 }
+
+const vector<wstring> &Trip::getTrips() const{
+	return trips;
+}
+
+void Trip::writeFromDisc(wstring trip) {
+	trips.push_back(trip);
+}
+

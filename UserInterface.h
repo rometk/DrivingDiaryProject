@@ -12,8 +12,9 @@ public:
 
 	void start();
 	void help();
-	string from();
-	string to();
+	wstring from();
+	wstring to();
+	int avgConsumption();
 
 private:
 	Controller controller;
